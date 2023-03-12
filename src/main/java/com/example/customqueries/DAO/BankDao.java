@@ -1,6 +1,7 @@
 package com.example.customqueries.DAO;
 
 import com.example.customqueries.Entity.Bank;
+import lombok.AllArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -10,14 +11,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
+@AllArgsConstructor
 public class BankDao {
 
-    @Autowired
+//    @Autowired
     private JdbcTemplate jdbcTemplate;
 
 
     public List<Bank> getAllBankRecords(){
-        String query = "SELECT * FROM employee_bank_details WHERE is_valid = "+1;
+        String query = "SELECT * FROM employee_bank_details WHERE is_valid = "+1+" LIMIT 1000";
         return jdbcTemplate.query(
                 query, rs -> {
                     List<Bank> bankRecords = new ArrayList<>();
@@ -40,7 +42,7 @@ public class BankDao {
 
 
     public Bank getBankRecord(String das){
-        String query = "SELECT * FROM employee_bank_details WHERE das_id = '"+das+"'";
+        String query = "SELECT * FROM employee_bank_details WHERE das_id = '"+das+"' LIMIT 1000";
         Bank bank = new Bank();
         return jdbcTemplate.query(
                 query, rs -> {
