@@ -3,7 +3,6 @@ package com.example.customqueries.DAO;
 import com.example.customqueries.Entity.Bank;
 import lombok.AllArgsConstructor;
 import org.jetbrains.annotations.NotNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
