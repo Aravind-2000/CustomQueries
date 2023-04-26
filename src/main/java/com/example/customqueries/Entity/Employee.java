@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import jakarta.persistence.*;
@@ -13,7 +12,7 @@ import jakarta.persistence.*;
 @Entity(name = "employee_details")
 @Getter
 @Setter
-public class Employee implements Serializable {
+public class Employee{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
