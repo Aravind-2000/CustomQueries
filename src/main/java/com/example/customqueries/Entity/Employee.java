@@ -1,10 +1,10 @@
 package com.example.customqueries.Entity;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
-
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import jakarta.persistence.*;
@@ -12,13 +12,12 @@ import jakarta.persistence.*;
 @Entity(name = "employee_details")
 @Getter
 @Setter
-public class Employee{
+public class Employee implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    // @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Integer id;
-
 
     @Column(unique = true)
     private String dasId;
@@ -35,8 +34,10 @@ public class Employee{
 
     @JsonIgnore
     private Integer bankId;
-    @JoinColumn(name = "bankId", insertable = false, updatable = false)
+
+    @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "bankId", insertable = false, updatable = false)
     private Bank employeeBankDetails;
 
     @JsonIgnore
